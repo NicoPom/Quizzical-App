@@ -104,3 +104,34 @@ body {
 .start--description {
   margin-bottom: 20px;
 }
+
+/* Quiz Component */
+
+/* Question Component */
+
+.question--container {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.question--answers {
+  display: flex;
+}
+
+.question--answer {
+  border: 1px solid var(--dark-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.incorrect {
+  border: 3px solid red;
+}
+
+.correct {
+  border: 3px solid green;
+}
