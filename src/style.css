@@ -1,3 +1,106 @@
-div {
-  background: blue;
+/* Global */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --yellow: #fffad1;
+  --color: #deebf8;
+  --dark-blue: #293264;
+  --main-button: #4d5b9e;
+  --color: #dbdef0;
+  --bg-color: #f5f7fb;
+  --color: #94d7a2;
+  --color: #d6dbf5;
+  --pink: #f8bcbc;
+}
+
+/* Typography */
+
+body {
+  background-color: var(--bg-color);
+  color: var(--dark-blue);
+  line-height: 1.5;
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  font-family: "Karla";
+  font-weight: 700;
+  font-size: 1.95rem;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 19px;
+}
+
+/* Button */
+
+.start--button {
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 1em;
+  background-color: var(--main-button);
+  color: var(--bg-color);
+
+  border: none;
+  border-radius: 15px;
+  padding: 1.125em 4em;
+
+  cursor: pointer;
+}
+
+.start--button:hover {
+  background-color: var(--bg-color);
+  color: var(--dark-blue);
+  font-weight: 700;
+  outline: 1px solid var(--dark-blue);
+}
+
+.start--button:focus {
+  outline: 2px solid var(--pink);
+}
+
+/* Layout */
+
+html,
+body {
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: grid;
+  place-content: center;
+}
+
+.app--container {
+  border: 1px solid #293264;
+}
+
+/* Start Component */
+
+.start--container {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.start--title {
+  margin-bottom: 5px;
+}
+
+.start--description {
+  margin-bottom: 20px;
 }
