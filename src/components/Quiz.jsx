@@ -12,17 +12,16 @@ export default function Quiz() {
         "https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple"
       );
       const data = await res.json();
-      data.results.map((result) => {
-        setQuestions((prevQuestions) => [
-          ...prevQuestions,
-          {
-            id: nanoid(),
-            question: htmlDecode(result.question),
-            answer: htmlDecode(result.correct_answer),
-            incorrect_answers: result.incorrect_answers,
-          },
-        ]);
-      });
+
+      const questionArr = data.results.map((result) => ({
+        id: nanoid(),
+        question: htmlDecode(result.question),
+        answers: [...result.incorrect_answers, result.correct_answer].sort(
+          () => Math.random() - 0.5
+        ),
+      }));
+
+      setQuestions(questionArr);
     }
     getQuestions();
   }, []);
@@ -33,7 +32,7 @@ export default function Quiz() {
     <Question
       key={question.id}
       question={question.question}
-      answer={question.answer}
+      answers={question.answers}
       incorrect_answers={question.incorrect_answers}
     />
   ));
