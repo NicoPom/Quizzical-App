@@ -4,43 +4,47 @@ import Question from "./Question";
 import { htmlDecode } from "../utils";
 
 export default function Quiz() {
-  const [questions, setQuestions] = React.useState(() => []);
+  const [quiz, setQuiz] = React.useState(() => []);
 
   React.useEffect(() => {
-    async function getQuestions() {
+    async function getQuizData() {
       const res = await fetch(
         "https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple"
       );
       const data = await res.json();
 
-      const questionArr = data.results.map((result) => ({
+      const quizArr = data.results.map((result) => ({
         id: nanoid(),
         question: htmlDecode(result.question),
-        answers: [...result.incorrect_answers, result.correct_answer].sort(
-          () => Math.random() - 0.5
-        ),
+        answers: result.incorrect_answers
+          .map((answer) => ({
+            answer: htmlDecode(answer),
+            correct: false,
+          }))
+          .concat({
+            answer: htmlDecode(result.correct_answer),
+            correct: true,
+          })
+          .sort(() => Math.random() - 0.5),
       }));
 
-      setQuestions(questionArr);
+      setQuiz(quizArr);
     }
-    getQuestions();
+    getQuizData();
   }, []);
 
-  console.log(questions);
-
-  const questionsElements = questions.map((question) => (
+  const quizElements = quiz.map((question) => (
     <Question
       key={question.id}
       question={question.question}
       answers={question.answers}
-      incorrect_answers={question.incorrect_answers}
     />
   ));
 
   return (
     <>
       <div className="quiz--container">
-        {questionsElements}
+        {quizElements}
         <button className="quiz--check-button">Check Answers</button>
       </div>
     </>

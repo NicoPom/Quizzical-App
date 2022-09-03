@@ -5,7 +5,7 @@ import { htmlDecode } from "../utils";
 export default function Question(props) {
   const answerElements = props.answers.map((answer) => (
     <div className="question--answer" key={nanoid()}>
-      {htmlDecode(answer)}
+      {answer.answer}
     </div>
   ));
   console.log(props);
