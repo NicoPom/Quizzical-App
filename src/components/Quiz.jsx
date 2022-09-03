@@ -1,6 +1,7 @@
 import React from "react";
 import { nanoid } from "nanoid";
 import Question from "./Question";
+import { htmlDecode } from "../utils";
 
 export default function Quiz() {
   const [questions, setQuestions] = React.useState(() => []);
@@ -16,8 +17,8 @@ export default function Quiz() {
           ...prevQuestions,
           {
             id: nanoid(),
-            question: result.question,
-            answer: result.correct_answer,
+            question: htmlDecode(result.question),
+            answer: htmlDecode(result.correct_answer),
             incorrect_answers: result.incorrect_answers,
           },
         ]);

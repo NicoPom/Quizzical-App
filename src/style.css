@@ -13,7 +13,7 @@
   --color: #deebf8;
   --dark-blue: #293264;
   --main-button: #4d5b9e;
-  --color: #dbdef0;
+  --light-blue: #dbdef0;
   --bg-color: #f5f7fb;
   --color: #94d7a2;
   --color: #d6dbf5;
@@ -21,6 +21,9 @@
 }
 
 /* Typography */
+html {
+  font-size: 1.5rem;
+}
 
 body {
   background-color: var(--bg-color);
@@ -38,7 +41,6 @@ h1 {
 h3 {
   font-weight: 400;
   font-size: 1.1rem;
-  line-height: 19px;
 }
 
 /* Button */
@@ -46,7 +48,7 @@ h3 {
 .start--button {
   font-family: "Inter";
   font-weight: 500;
-  font-size: 1em;
+  font-size: 1rem;
   background-color: var(--main-button);
   color: var(--bg-color);
 
@@ -71,21 +73,14 @@ h3 {
 /* Layout */
 
 html,
-body {
+body,
+#root {
   min-height: 100vh;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
+#root {
   display: grid;
   place-content: center;
-}
-
-.app--container {
-  border: 1px solid #293264;
 }
 
 /* Start Component */
@@ -98,11 +93,11 @@ body {
 }
 
 .start--title {
-  margin-bottom: 5px;
+  margin-bottom: 0 3em;
 }
 
 .start--description {
-  margin-bottom: 20px;
+  margin-bottom: 1.25em;
 }
 
 /* Quiz Component */
@@ -110,28 +105,45 @@ body {
 /* Question Component */
 
 .question--container {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 0.5em;
+  max-width: 600px;
+  border-bottom: 1px solid var(--light-blue);
+  padding: 1.25em 0;
 }
 
+.question--title {
+  font-family: "Karla";
+  font-size: 1rem;
+  margin-bottom: 0.2em;
+}
 .question--answers {
   display: flex;
+  gap: 0.7em;
+  flex-wrap: wrap;
 }
 
 .question--answer {
-  border: 1px solid var(--dark-blue);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 10px;
+  font-weight: 500;
+  font-size: 0.7rem;
+
+  padding: 0.3em 1em;
+  outline: 0.8px solid var(--main-button);
+  border-radius: 0.8em;
+  cursor: pointer;
 }
 
-.incorrect {
+.question--answer:hover,
+.question--answer:focus {
+  background-color: var(--light-blue);
+  outline: none;
+}
+
+/* .incorrect {
   border: 3px solid red;
 }
 
 .correct {
   border: 3px solid green;
-}
+} */

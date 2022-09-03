@@ -1,8 +1,12 @@
 import React from "react";
+import { nanoid } from "nanoid";
+import { htmlDecode } from "../utils";
 
 export default function Question(props) {
   const incorrectAnswers = props.incorrect_answers.map((answer) => (
-    <div className="question--answer incorrect">{answer}</div>
+    <div className="question--answer incorrect" key={nanoid()}>
+      {htmlDecode(answer)}
+    </div>
   ));
   return (
     <div className="question--container">
