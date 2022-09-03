@@ -22,7 +22,7 @@
 
 /* Typography */
 html {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 body {
@@ -45,7 +45,7 @@ h3 {
 
 /* Button */
 
-.start--button {
+button {
   font-family: "Inter";
   font-weight: 500;
   font-size: 1rem;
@@ -59,15 +59,23 @@ h3 {
   cursor: pointer;
 }
 
-.start--button:hover {
+button:hover {
   background-color: var(--bg-color);
   color: var(--dark-blue);
-  font-weight: 700;
+
   outline: 1px solid var(--dark-blue);
 }
 
-.start--button:focus {
+button:focus {
   outline: 2px solid var(--pink);
+}
+
+.quiz--check-button {
+  padding: 0.9em 2.25em;
+
+  display: block;
+  margin-left: auto;
+  margin-top: 1em;
 }
 
 /* Layout */
@@ -101,6 +109,10 @@ body,
 }
 
 /* Quiz Component */
+
+.quiz--container {
+  border: 1px solid red;
+}
 
 /* Question Component */
 

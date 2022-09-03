@@ -38,5 +38,12 @@ export default function Quiz() {
     />
   ));
 
-  return <div className="quiz--container">{questionsElements}</div>;
+  return (
+    <>
+      <div className="quiz--container">
+        {questionsElements}
+        <button className="quiz--check-button">Check Answers</button>
+      </div>
+    </>
+  );
 }
