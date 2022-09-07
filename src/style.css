@@ -130,6 +130,7 @@ body,
   font-size: 1rem;
   margin-bottom: 0.2em;
 }
+
 .question--answers {
   display: flex;
   gap: 0.7em;
@@ -139,9 +140,7 @@ body,
 .question--answer {
   font-weight: 500;
   font-size: 0.7rem;
-
   padding: 0.3em 1em;
-  outline: 0.8px solid var(--main-button);
   border-radius: 0.8em;
   cursor: pointer;
 }

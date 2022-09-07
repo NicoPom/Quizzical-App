@@ -1,14 +1,17 @@
 import React from "react";
 import { nanoid } from "nanoid";
-import { htmlDecode } from "../utils";
+import Answer from "./Answer";
 
 export default function Question(props) {
   const answerElements = props.answers.map((answer) => (
-    <div className="question--answer" key={nanoid()}>
-      {answer.answer}
-    </div>
+    <Answer
+      key={nanoid()}
+      value={answer.answer}
+      correct={answer.correct}
+      selected={answer.selected}
+      selectAnswer={() => props.selectAnswer(answer.id)}
+    />
   ));
-  console.log(props);
 
   return (
     <div className="question--container">

@@ -12,7 +12,6 @@ export default function Quiz() {
         "https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple"
       );
       const data = await res.json();
-
       const quizArr = data.results.map((result) => ({
         id: nanoid(),
         question: htmlDecode(result.question),
@@ -20,24 +19,46 @@ export default function Quiz() {
           .map((answer) => ({
             answer: htmlDecode(answer),
             correct: false,
+            selected: false,
+            id: nanoid(),
           }))
           .concat({
             answer: htmlDecode(result.correct_answer),
             correct: true,
+            selected: false,
+            id: nanoid(),
           })
-          .sort(() => Math.random() - 0.5),
+          .sort(() => Math.random() - 0.5), // Randomize the order of the answers
       }));
-
       setQuiz(quizArr);
     }
     getQuizData();
   }, []);
 
-  const quizElements = quiz.map((question) => (
+  function selectAnswer(id) {
+    const newQuiz = quiz.map((question) => {
+      if (question.answers.some((answer) => answer.id === id)) {
+        //
+        return {
+          ...question,
+          answers: question.answers.map((answer) => ({
+            ...answer,
+            selected: answer.id === id,
+          })),
+        };
+      } else {
+        return question;
+      }
+    });
+    setQuiz(newQuiz);
+  }
+
+  const quizElements = quiz.map((item) => (
     <Question
-      key={question.id}
-      question={question.question}
-      answers={question.answers}
+      key={item.id}
+      question={item.question}
+      answers={item.answers}
+      selectAnswer={selectAnswer}
     />
   ));
 
