@@ -21,15 +21,20 @@ export default function App() {
       const data = await response.json();
       const quizData = data.results.map((item) => {
         const answers = [...item.incorrect_answers, item.correct_answer];
-        return {
-          id: nanoid(),
-          question: htmlDecode(item.question),
-          answers: answers.map((answer) => ({
+        const correct = item.correct_answer;
+        const shuffledAnswers = answers.sort(() => Math.random() - 0.5);
+        const formattedAnswers = shuffledAnswers.map((answer) => {
+          return {
             id: nanoid(),
             value: htmlDecode(answer),
             selected: false,
-          })),
-          correct: htmlDecode(item.correct_answer),
+          };
+        });
+        return {
+          key: nanoid(),
+          question: htmlDecode(item.question),
+          answers: formattedAnswers,
+          correct: correct,
         };
       });
       setQuiz(quizData);
@@ -39,24 +44,31 @@ export default function App() {
 
   function startQuiz() {
     setStart(true);
+    console.log("app", quiz);
   }
 
   function selectAnswer(id) {
-    if (!quizStatus.clickableAnswers) return;
-    const newQuiz = quiz.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          answers: item.answers.map((answer) => ({
-            ...answer,
-            selected: !answer.selected,
-          })),
-        };
-      } else {
-        return item;
-      }
-    });
-    setQuiz(newQuiz);
+    if (quizStatus.clickableAnswers) {
+      setQuiz((prevQuiz) => {
+        const updatedQuiz = prevQuiz.map((item) => {
+          const updatedAnswers = item.answers.map((answer) => {
+            if (answer.id === id) {
+              return {
+                ...answer,
+                selected: true,
+              };
+            } else {
+              return answer;
+            }
+          });
+          return {
+            ...item,
+            answers: updatedAnswers,
+          };
+        });
+        return updatedQuiz;
+      });
+    }
   }
 
   return (
@@ -64,12 +76,7 @@ export default function App() {
       {!start ? (
         <Start startQuiz={startQuiz} />
       ) : (
-        <Quiz
-          quiz={quiz}
-          quizStatus={quizStatus}
-          selectAnswer={selectAnswer}
-          selected={quiz.selected}
-        />
+        <Quiz quiz={quiz} quizStatus={quizStatus} selectAnswer={selectAnswer} />
       )}
     </main>
   );
