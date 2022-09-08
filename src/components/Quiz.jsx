@@ -2,28 +2,23 @@ import React from "react";
 import Question from "./Question";
 
 export default function Quiz(props) {
-  const quiz = props.quiz;
-  const quizStatus = props.quizStatus;
-
-  const quizElements = quiz.map((item) => (
+  const quizElements = props.quiz.map((question) => (
     <Question
-      key={item.id}
-      id={item.id}
-      question={item.question}
-      answers={item.answers}
-      correct={item.correct}
-      quizIsFinished={quizStatus.finished}
+      key={question.key}
+      question={question.question}
+      answers={question.answers}
+      correct={question.correct}
       selectAnswer={props.selectAnswer}
-      selected={item.selected}
+      quizStatus={props.quizStatus}
     />
   ));
-
+  console.log("quiz", props.quiz);
   return (
     <>
       <div className="quiz--container">
         {quizElements}
         <button className="quiz--check-button" onClick={props.checkAnswers}>
-          {quizStatus.isFinished ? "Play Again" : "Check Answers"}
+          {props.quizStatus.isFinished ? "Play Again" : "Check Answers"}
         </button>
       </div>
     </>

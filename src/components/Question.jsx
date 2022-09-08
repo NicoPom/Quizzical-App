@@ -3,17 +3,17 @@ import { nanoid } from "nanoid";
 import Answer from "./Answer";
 
 export default function Question(props) {
-  const answers = props.answers;
-  const answerElements = answers.map((answer) => (
+  const answerElements = props.answers.map((answer) => (
     <Answer
       key={nanoid()}
       answer={answer}
       correct={props.correct}
-      quizIsFinished={props.quizIsFinished}
       selectAnswer={props.selectAnswer}
       selected={answer.selected}
+      quizStatus={props.quizStatus}
     />
   ));
+  console.log("question", props);
 
   return (
     <div className="question--container">
