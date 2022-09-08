@@ -15,9 +15,9 @@
   --main-button: #4d5b9e;
   --light-blue: #dbdef0;
   --bg-color: #f5f7fb;
-  --color: #94d7a2;
+  --correct-answer: #94d7a2;
   --color: #d6dbf5;
-  --pink: #f8bcbc;
+  --incorrect-answer: #f8bcbc;
 }
 
 /* Typography */
@@ -142,6 +142,7 @@ body,
   font-size: 0.7rem;
   padding: 0.3em 1em;
   border-radius: 0.8em;
+  outline: 1px solid var(--main-button);
   cursor: pointer;
 }
 
@@ -151,10 +152,17 @@ body,
   outline: none;
 }
 
-/* .incorrect {
-  border: 3px solid red;
+.selected {
+  background-color: red;
+  outline: 1px solid var(--light-blue);
 }
 
 .correct {
-  border: 3px solid green;
-} */
+  background-color: var(--correct-answer);
+  outline: 1px solid var(--correct-answer);
+}
+
+.incorrect {
+  background-color: var(--incorrect-answer);
+  outline: 1px solid var(--incorrect-answer);
+}

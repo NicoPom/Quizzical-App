@@ -3,13 +3,15 @@ import { nanoid } from "nanoid";
 import Answer from "./Answer";
 
 export default function Question(props) {
-  const answerElements = props.answers.map((answer) => (
+  const answers = props.answers;
+  const answerElements = answers.map((answer) => (
     <Answer
       key={nanoid()}
-      value={answer.answer}
-      correct={answer.correct}
+      answer={answer}
+      correct={props.correct}
+      quizIsFinished={props.quizIsFinished}
+      selectAnswer={props.selectAnswer}
       selected={answer.selected}
-      selectAnswer={() => props.selectAnswer(answer.id)}
     />
   ));
 
