@@ -12,7 +12,7 @@ export default function Quiz(props) {
       quizStatus={props.quizStatus}
     />
   ));
-  console.log("quiz", props.quiz);
+
   return (
     <>
       <div className="quiz--container">
