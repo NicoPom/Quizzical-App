@@ -49,25 +49,26 @@ export default function App() {
 
   function selectAnswer(id) {
     if (quizStatus.clickableAnswers) {
-      setQuiz((prevQuiz) => {
-        const updatedQuiz = prevQuiz.map((item) => {
-          const updatedAnswers = item.answers.map((answer) => {
-            if (answer.id === id) {
-              return {
-                ...answer,
-                selected: true,
-              };
-            } else {
-              return answer;
-            }
-          });
-          return {
-            ...item,
-            answers: updatedAnswers,
-          };
+      const newQuiz = quiz.map((question) => {
+        const newAnswers = question.answers.map((answer) => {
+          if (answer.id === id) {
+            return {
+              ...answer,
+              selected: true,
+            };
+          } else {
+            return {
+              ...answer,
+              selected: false,
+            };
+          }
         });
-        return updatedQuiz;
+        return {
+          ...question,
+          answers: newAnswers,
+        };
       });
+      setQuiz(newQuiz);
     }
   }
 
@@ -76,7 +77,12 @@ export default function App() {
       {!start ? (
         <Start startQuiz={startQuiz} />
       ) : (
-        <Quiz quiz={quiz} quizStatus={quizStatus} selectAnswer={selectAnswer} />
+        <Quiz
+          quiz={quiz}
+          quizStatus={quizStatus}
+          selectAnswer={selectAnswer}
+          // checkAnswers={checkAnswers}
+        />
       )}
     </main>
   );

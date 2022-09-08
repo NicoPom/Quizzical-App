@@ -13,7 +13,6 @@ export default function Question(props) {
       quizStatus={props.quizStatus}
     />
   ));
-  console.log("question", props);
 
   return (
     <div className="question--container">
