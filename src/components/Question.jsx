@@ -7,9 +7,11 @@ export default function Question(props) {
   const answerElements = props.answers.map((answer) => (
     <Answer
       key={nanoid()}
+      questionId={props.questionId}
+      answerId={answer.id}
       answer={answer}
+      isSelected={answer.isSelected}
       selectAnswer={props.selectAnswer}
-      correct={props.correct}
       quizIsFinished={props.quizIsFinished}
     />
   ));

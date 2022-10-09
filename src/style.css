@@ -130,7 +130,7 @@ body,
   padding: 1.25em 0;
 }
 
-.question {
+.question--title {
   font-family: "Karla";
   font-size: 1rem;
   margin-bottom: 0.2em;
@@ -142,7 +142,7 @@ body,
   flex-wrap: wrap;
 }
 
-.question--answer {
+.answer {
   font-weight: 500;
   font-size: 0.7rem;
   padding: 0.3em 1em;
@@ -151,15 +151,15 @@ body,
   cursor: pointer;
 }
 
-.question--answer:hover,
-.question--answer:focus {
+.answer:hover,
+.answer:focus {
   background-color: var(--light-blue);
   outline: none;
 }
 
 .selected {
   background-color: var(--light-blue);
-  outline: 1px solid var(--light-blue);
+  outline: 1px solid red;
 }
 
 .correct {
