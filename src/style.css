@@ -179,3 +179,12 @@ body,
   background-color: var(--incorrect-answer);
   outline: 1px solid var(--incorrect-answer);
 }
+
+/* Results Component */
+
+footer {
+  max-width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}

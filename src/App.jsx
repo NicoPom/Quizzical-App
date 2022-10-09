@@ -99,7 +99,6 @@ export default function App() {
 
       if (allQuestionsAnswered) {
         setQuizCompleted(true);
-        console.log("quiz completed");
       }
     }
   }, [quiz]);
