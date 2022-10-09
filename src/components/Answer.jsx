@@ -5,6 +5,13 @@ export default function Answer(props) {
   if (props.selected) {
     className += " selected";
   }
+  if (props.quizStatus.isFinished) {
+    if (props.answer.value === props.correct) {
+      className += " correct";
+    } else if (props.selected) {
+      className += " incorrect";
+    }
+  }
 
   return (
     <div

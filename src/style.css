@@ -74,7 +74,7 @@ button:focus {
   padding: 0.9em 2.25em;
 
   display: block;
-  margin-left: auto;
+  margin: 0 auto;
   margin-top: 1em;
 }
 
@@ -112,6 +112,11 @@ body,
 
 .quiz--container {
   border: 1px solid red;
+}
+
+.quiz--results {
+  display: flex;
+  align-items: center;
 }
 
 /* Question Component */
