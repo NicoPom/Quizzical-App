@@ -2,7 +2,18 @@ import React from "react";
 import { htmlDecode } from "../utils";
 
 export default function Answer(props) {
-  const className = "answer" + (props.isSelected ? " selected" : "");
+  let className = "answer";
+  if (props.quizIsFinished) {
+    if (props.answer.answer === props.correctAnswer) {
+      className += " correct";
+    } else if (props.answer.isSelected) {
+      className += " incorrect";
+    }
+  } else {
+    if (props.answer.isSelected) {
+      className += " selected";
+    }
+  }
 
   return (
     <div

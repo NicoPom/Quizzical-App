@@ -10,6 +10,7 @@ export default function Question(props) {
       questionId={props.questionId}
       answerId={answer.id}
       answer={answer}
+      correctAnswer={props.correctAnswer}
       isSelected={answer.isSelected}
       selectAnswer={props.selectAnswer}
       quizIsFinished={props.quizIsFinished}

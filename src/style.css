@@ -22,7 +22,7 @@
 
 /* Typography */
 html {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 body {
@@ -38,9 +38,19 @@ h1 {
   font-size: 1.95rem;
 }
 
+.question--title {
+  font-family: "Karla";
+  font-size: 1.4rem;
+}
+
 h3 {
   font-weight: 400;
   font-size: 1.1rem;
+}
+
+.answer {
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 /* Button */
@@ -124,15 +134,15 @@ body,
 .question--container {
   display: flex;
   flex-direction: column;
+
   gap: 0.5em;
-  max-width: 600px;
+  width: 80%;
   border-bottom: 1px solid var(--light-blue);
+  margin: 0 auto;
   padding: 1.25em 0;
 }
 
 .question--title {
-  font-family: "Karla";
-  font-size: 1rem;
   margin-bottom: 0.2em;
 }
 
@@ -143,8 +153,6 @@ body,
 }
 
 .answer {
-  font-weight: 500;
-  font-size: 0.7rem;
   padding: 0.3em 1em;
   border-radius: 0.8em;
   outline: 1px solid var(--main-button);
