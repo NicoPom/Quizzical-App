@@ -6,6 +6,7 @@ import Question from "./components/Question.jsx";
 export default function App() {
   const [start, setStart] = React.useState(false);
   const [quiz, setQuiz] = React.useState([]);
+  const [answers, setAnswers] = React.useState([]);
 
   const [quizCompleted, setQuizCompleted] = React.useState(() => false);
   const [quizIsFinished, setQuizIsFinished] = React.useState(() => false);
@@ -89,20 +90,47 @@ export default function App() {
     });
   }
 
-  function calculateScore() {}
+  // each time the quiz changes, check if all questions have been answered
+  React.useEffect(() => {
+    if (quiz.length > 0) {
+      const allQuestionsAnswered = quiz.every((question) => {
+        return question.answers.some((answer) => answer.isSelected);
+      });
 
-  // function restartQuiz() {
-  //   setQuizStatus({
-  //     isFinished: false,
-  //     clickableAnswers: true,
-  //     score: 0,
-  //   });
-  //   setStart(false);
-  // }
+      if (allQuestionsAnswered) {
+        setQuizCompleted(true);
+        console.log("quiz completed");
+      }
+    }
+  }, [quiz]);
+
+  function calculateScore() {
+    const score = quiz.reduce((score, question) => {
+      const selectedAnswer = question.answers.find((answer) => {
+        return answer.isSelected;
+      });
+
+      if (selectedAnswer.answer === question.correctAnswer) {
+        return score + 1;
+      }
+      return score;
+    }, 0);
+
+    setScore(score);
+    setQuizIsFinished(true);
+  }
+
+  function playAgain() {
+    setQuiz([]);
+    setQuizCompleted(false);
+    setQuizIsFinished(false);
+    setScore(0);
+    setStart(false);
+  }
 
   return (
     <main className="app--container">
-      {!start ? (
+      {!start && (
         // START PAGE
         <section className="start--container">
           <h1 className="start--title">Quiz App</h1>
@@ -111,27 +139,29 @@ export default function App() {
             Start Quiz
           </button>
         </section>
-      ) : (
-        // QUIZ PAGE
+      )}
+      {start && ( // QUIZ PAGE
         <section className="quiz--container">
           {questionElements}
-          {quizCompleted ? (
+          {quizCompleted && (
             <footer className="quiz--results">
-              {quizIsFinished ? (
+              {quizIsFinished && (
                 <p className="quiz--results__text">
-                  You scored {quizStatus.score}/{quiz.length} correct answers
+                  You scored {score}/{quiz.length} correct answers
                 </p>
-              ) : (
+              )}
+              {quizCompleted && !quizIsFinished && (
                 <button className="check--answers" onClick={calculateScore}>
                   Check Answers
                 </button>
               )}
-              ) :
-              <button className="play--again" onClick={playAgain}>
-                Play Again
-              </button>
+              {quizIsFinished && (
+                <button className="play--again" onClick={playAgain}>
+                  Play Again
+                </button>
+              )}
             </footer>
-          ) : null}
+          )}
         </section>
       )}
     </main>
