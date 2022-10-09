@@ -130,13 +130,13 @@ body,
   padding: 1.25em 0;
 }
 
-.question--title {
+.question {
   font-family: "Karla";
   font-size: 1rem;
   margin-bottom: 0.2em;
 }
 
-.question--answers {
+.answers--list {
   display: flex;
   gap: 0.7em;
   flex-wrap: wrap;

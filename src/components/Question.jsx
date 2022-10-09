@@ -1,5 +1,6 @@
 import React from "react";
 import { nanoid } from "nanoid";
+import { htmlDecode } from "../utils";
 import Answer from "./Answer";
 
 export default function Question(props) {
@@ -7,17 +8,16 @@ export default function Question(props) {
     <Answer
       key={nanoid()}
       answer={answer}
-      correct={props.correct}
       selectAnswer={props.selectAnswer}
-      selected={answer.selected}
-      quizStatus={props.quizStatus}
+      correct={props.correct}
+      quizIsFinished={props.quizIsFinished}
     />
   ));
 
   return (
     <div className="question--container">
-      <h2 className="question--title">{props.question}</h2>
-      <div className="question--answers">{answerElements}</div>
+      <h2 className="question--title">{htmlDecode(props.question)}</h2>
+      <ul className="answers--list">{answerElements}</ul>
     </div>
   );
 }
