@@ -96,6 +96,12 @@ body,
   place-content: center;
 }
 
+.app--container {
+  min-width: 300px;
+  max-width: 800px;
+  width: 100%;
+}
+
 /* Start Component */
 
 .start--container {
@@ -106,20 +112,22 @@ body,
 }
 
 .start--title {
-  margin-bottom: 0 3em;
+  margin-bottom: 0.2em;
 }
 
 .start--description {
   margin-bottom: 1.25em;
 }
 
+.start--button {
+  font-size: 0.8rem;
+  padding: 1em 4em;
+}
+
 /* Quiz Component */
 
 .quiz--container {
   border: 1px solid red;
-  min-width: 300px;
-  width: 90%;
-  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -128,16 +136,12 @@ body,
 .question--container {
   display: flex;
   flex-direction: column;
-
-  gap: 0.5em;
-
   border-bottom: 1px solid var(--light-blue);
-  margin: 0 auto;
-  padding: 1.25em 0;
+  padding: 1.5em 0;
 }
 
 .question--title {
-  margin-bottom: 0.2em;
+  margin-bottom: 1em;
 }
 
 .answers--list {
