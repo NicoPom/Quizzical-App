@@ -105,7 +105,6 @@ body,
 /* Start Component */
 
 .start--container {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,7 +126,6 @@ body,
 /* Quiz Component */
 
 .quiz--container {
-  border: 1px solid red;
   margin: 0 auto;
 }
 
