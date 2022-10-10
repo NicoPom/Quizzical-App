@@ -34,7 +34,7 @@ export default function App() {
     if (start) {
       async function getQuizData() {
         try {
-          const response = await fetch("https://opentdb.com/api.php?amount=5");
+          const response = await fetch("https://opentdb.com/api.php?amount=3");
           const data = await response.json();
           const quizData = data.results.map((data) => {
             const answers = [
@@ -132,7 +132,7 @@ export default function App() {
       {!start && (
         // START PAGE
         <section className="start--container">
-          <h1 className="start--title">Quiz App</h1>
+          <h1 className="start--title">Quizzical</h1>
           <p className="start--description">A quiz app made with React.js</p>
           <button className="start--button" onClick={startQuiz}>
             Start Quiz
